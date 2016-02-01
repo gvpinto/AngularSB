@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" ng-app="ui.bootstrap.demo">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="typeahead.js"></script>
+    <link rel="stylesheet"
+          href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+
+<div class='container-fluid'
+     ng-controller="TypeaheadCtrl">
+
+    <h1>{{ typeaheadTitle }}</h1>
+
+    <fs-typeahead fs-field-meta-data="screenMetaData"
+                  fs-form-name="screenMetaData.forms.basicdata"
+                  fs-model="model.basicdata"
+                  fs-field-name="branch"></fs-typeahead>
+</div>
+</body>
+</html>

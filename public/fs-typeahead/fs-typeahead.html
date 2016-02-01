@@ -1,0 +1,25 @@
+<div ng-class="['form-group has-feedback',  hasSuccessOrError(fsFormName, fsFieldMetaData[fsFieldName].id).has]">
+    <label for="{{ fsFieldMetaData[fsFieldName].id }}"
+           class="col-sm-3 control-label">{{ fsFieldMetaData[fsFieldName].label }}</label>
+
+    <div class="col-sm-9">
+        <input type="text"
+               name="{{ fsFieldMetaData[fsFieldName].id }}"
+               id="{{ fsFieldMetaData[fsFieldName].id }}"
+               class="form-control"
+               ng-model="fsModel[fsFieldName]"
+               placeholder="search for {{ placeholder }}"
+               uib-typeahead="branch as branch.id + ' - ' + branch.name for branch in typeaheadLookup('branch', $viewValue)"
+               typeahead-on-select="typeaheadOnSelect($item, $model, $label)"
+               typeahead-min-length="2"
+               typeahead-wait-ms="250"
+               typeahead-loading="loading"
+               typeahead-no-results="noresults">
+        <i ng-show="loading" class="glyphicon glyphicon-refresh">loading...</i>
+
+        <div ng-show="noresults">
+            <i class="glyphicon glyphicon-remove"></i>No Results Found
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="form-group" ng-form="inputForm">
+    <label for="txtInput">Input</label>
+    <input type="text" class="form-control" id="txtInput" name="txtInput" placeholder="mm/dd/yyyy" ng-model="fsModel" fs-date>
+    <!--ng-model-options="{allowInvalid: true}"-->
+    <!--<span ng-show="inputForm.$invalid">Invalid Date</span>-->
+</div>
+<div>{{ fsModel }}</div>
+<div>
+    <span ng-show="isValid()">Date Valid</span>
+    <span ng-show="!isValid()">Date Invalid</span>
+</div>
+
+
+

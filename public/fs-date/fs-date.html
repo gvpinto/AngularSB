@@ -1,0 +1,46 @@
+<div ng-class="['form-group has-feedback',  hasSuccessOrError(fsForm[fsFieldName]).has]">
+    <label for="{{ fsFieldMetadata[fsFieldName].id }}"
+           class="col-sm-4 control-label">{{ fsFieldMetadata[fsFieldName].label }} *</label>
+
+    <div class=" col-sm-8">
+
+        <div class="input-group">
+
+            <input type="text"
+                   class="form-control"
+                   id="{{ fsFieldMetadata[fsFieldName].id }}"
+                   name="{{ fsFieldMetadata[fsFieldName].id }}"
+                   uib-datepicker-popup="{{fsDateControl.format}}"
+                   ng-model="fsModel"
+                   is-open="fsDateControl.opened"
+                   min-date="fsDateControl.minDate"
+                   max-date="fsDateControl.maxDate"
+                   datepicker-options="fsDateControl.dateOptions"
+                   date-disabled="fsDateControl.disabled(date, mode)"
+                   show-weeks="fsDateControl.showWeeks"
+                   close-text="Close"
+                   ng-disabled="setToReadOnly"
+                   placeholder="mm/dd/yyyy"
+                   aria-describedby="{{ fsFieldMetadata[fsFieldName].help }}"
+                   ng-pattern="fsFieldMetadata[fsFieldName].pattern"
+                   ng-required="requiredByAll"/>
+
+                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default datepicker"
+                                ng-disabled="setToReadOnly"
+                                ng-click="fsDateControl.open($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+
+        </div>
+
+        <span id="{{ fsFieldMetadata[fsFieldName].help }}"
+              class="help-block animate-hide"
+              ng-show="isInvalid(fsForm[fsFieldName])">
+                {{ fsFieldMetadata[fsFieldName].errMsg }}
+        </span>
+
+    </div>
+</div>

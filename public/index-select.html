@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="ui.bootstrap.demo">
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="js/myApp-select.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<style>
+    .typeahead-demo .custom-popup-wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        background-color: #f9f9f9;
+    }
+
+    .typeahead-demo .custom-popup-wrapper > .message {
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+        color: #868686;
+    }
+
+    .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+        position: static;
+        float: none;
+        display: block;
+        min-width: 160px;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+</style>
+
+
+<div class='container-fluid typeahead-demo' ng-controller="TypeaheadCtrl">
+
+    <h4>Asynchronous results</h4>
+
+    <pre>Model: {{asyncSelected | json}}</pre>
+
+    <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+
+    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh">loading locations</i>
+
+    <div ng-show="noResults">
+        <i class="glyphicon glyphicon-remove"></i> No Results Found
+    </div>
+
+</div>
+</body>
+</html>

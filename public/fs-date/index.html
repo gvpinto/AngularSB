@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"
+      ng-app="dateApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="fs-date.js"></script>
+    <link rel="stylesheet"
+          href="../bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <script>
+        var mnt = moment;
+        console.log(mnt);
+    </script>
+
+</head>
+<body>
+
+
+<!--<div class='container-fluid'-->
+     <!--ng-controller="TestCtrl">-->
+
+
+    <!--<form name="fsDateFormX"-->
+          <!--ng-controller="TestCtrl as dateCtrl">-->
+        <!--<label for="txtDate">Type in a date</label>-->
+        <!--<input id="txtDate"-->
+               <!--name="txtDate"-->
+               <!--ng-model="dateVal"-->
+               <!--fs-date-->
+               <!--placeholder="MM/dd/yyyy"-->
+               <!--required-->
+               <!--ng-change="changeEvent()"/>-->
+        <!--<div role="alert">-->
+     <!--<span class="error"-->
+           <!--ng-show="fsDateFormX.txtDate.$error.required">-->
+         <!--Required!</span>-->
+     <!--<span class="error"-->
+           <!--ng-show="fsDateFormX.txtDate.$error.date">-->
+         <!--Not a valid date!</span>-->
+        <!--</div>-->
+        <!--<tt>value = {{dateVal | date: "MM/dd/yyyy"}}</tt><br/>-->
+        <!--<tt>fsDateFormX.txtDate.$valid = {{fsDateFormX.txtDate.$valid}}</tt><br/>-->
+        <!--<tt>fsDateFormX.txtDate.$error = {{fsDateFormX.txtDate.$error}}</tt><br/>-->
+        <!--<tt>fsDateFormX.$valid = {{fsDateFormX.$valid}}</tt><br/>-->
+        <!--<tt>fsDateFormX.$error.required = {{!!fsDateFormX.$error.required}}</tt><br/>-->
+    <!--</form>-->
+
+
+<!--</div>-->
+
+<div class='container-fluid'
+     ng-controller="dateCtrl">
+
+    <form name="dateForm">
+
+        <fs-date fs-field-metadata="screenMetadata" fs-form="dateForm" fs-model="modelDate" fs-date-control="dateControl" fs-field-name="date" />
+
+    </form>
+
+
+</body>
+</html>
+
+
+
