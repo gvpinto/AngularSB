@@ -47,7 +47,7 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
                 startingDay: 1
             };
 
-            return this;
+            //return this;
         };
 
         DatePickerOptions.prototype = {
@@ -92,23 +92,17 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
             templateUrl: function (elem, attr) {
                 return 'fs-date.html'
             },
+            // <fs-date fs-FieldMetadata="" fs-model="" fs-filed-name=""></fs-date>
             scope: {
                 fsFieldMetadata: '=',
-                fsForm: '=',
                 fsModel: '=',
-                fsDateControl: '=',
+                //fsDateControl: '=',
                 fsFieldName: '@'
                 //fsOnChange: '&',
                 //fsLookupList: '='
             },
-            link: function postLink(scope, element, attrs) {
+            link: function postLink(scope, element, attrs, ngModelCtrl) {
                 console.log('Linker...');
-                console.log(scope.fsFieldName);
-                console.log(scope.fsForm);
-                console.log(scope.fsForm[scope.fsFieldName]);
-                console.log(scope.fsFieldMetadata[scope.fsFieldName]);
-                //console.log('link Called');
-                //console.log('Field Name [' + attrs['fsFieldName'] + ']');
             },
 
             controller: ['$scope', '$q', '$timeout', '$filter', function ($scope, $q, $timeout, $filter) {

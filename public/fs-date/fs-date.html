@@ -1,6 +1,6 @@
-<div ng-class="['form-group has-feedback',  hasSuccessOrError(screenMetaData.forms.basicdata, screenMetaData.maturityDate.id).has]" ng-form="">
-    <label for="{{ screenMetaData.maturityDate.id }}"
-           class="col-sm-4 control-label">{{ screenMetaData.maturityDate.label }} *</label>
+<div ng-class="['form-group has-feedback',  successOrError().has]" ng-form="{{fsFieldMetadata.id + 'Form'}}">
+    <label for="{{ fsFieldMetadata.id }}"
+           class="col-sm-4 control-label">{{ fsFieldMetadata.label }} *</label>
 
     <div class=" col-sm-8">
 
@@ -8,38 +8,38 @@
 
             <input type="text"
                    class="form-control"
-                   id="{{ screenMetaData.maturityDate.id }}"
-                   name="{{ screenMetaData.maturityDate.id }}"
-                   uib-datepicker-popup="{{maturityDate.format}}"
-                   ng-model="model.basicdata.maturityDate"
-                   is-open="maturityDate.opened"
-                   min-date="maturityDate.minDate"
-                   max-date="maturityDate.maxDate"
-                   datepicker-options="maturityDate.dateOptions"
-                   date-disabled="maturityDate.disabled(date, mode)"
-                   show-weeks="maturityDate.showWeeks"
+                   id="{{ fsFieldMetadata.id }}"
+                   name="{{ fsFieldMetadata.id }}"
+                   uib-datepicker-popup="{{dateOptions.format}}"
+                   ng-model="fsModel"
+                   is-open="dateOptions.opened"
+                   min-date="dateOptions.minDate"
+                   max-date="dateOptions.maxDate"
+                   datepicker-options="dateOptions.dateOptions"
+                   date-disabled="dateOptions.disabled(date, mode)"
+                   show-weeks="dateOptions.showWeeks"
                    close-text="Close"
                    ng-disabled="setToReadOnly"
                    placeholder="mm/dd/yyyy"
-                   aria-describedby="{{ screenMetaData.maturityDate.help }}"
-                   ng-pattern="screenMetaData.maturityDate.pattern"
+                   aria-describedby="{{ fsFieldMetadata.help }}"
+                   ng-pattern="fsFieldMetadata.pattern"
                    ng-required="requiredByAll"/>
 
                     <span class="input-group-btn">
                         <button type="button"
                                 class="btn btn-default datepicker"
                                 ng-disabled="setToReadOnly"
-                                ng-click="maturityDate.open($event)">
+                                ng-click="dateOptions.open($event)">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </button>
                     </span>
 
         </div>
 
-        <span id="{{ screenMetaData.maturityDate.help }}"
+        <span id="{{ fsFieldMetadata.help }}"
               class="help-block animate-hide"
-              ng-hide="isValid(screenMetaData.forms.basicdata, screenMetaData.maturityDate.id)">
-                {{ screenMetaData.maturityDate.errMsg }}
+              ng-hide="isValid()">
+                {{ fsFieldMetadata.errMsg }}
         </span>
 
     </div>
