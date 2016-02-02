@@ -3,7 +3,8 @@ angular.module('testElementApp', ['ui.bootstrap', 'finSpider.directives'])
         console.log('In App Controller...');
 
         $scope.title = 'Form Element in Directive';
-        $scope.inputVal = '12/31/12'
+        $scope.inputVal = '12/31/12';
+        $scope.inputVal2 = '11/30/10';
 
 
         ///**
@@ -23,7 +24,7 @@ angular.module('testElementApp', ['ui.bootstrap', 'finSpider.directives'])
             //console.log(oldValue);
             console.log($scope);
             console.log($scope.myForm);
-            watchForm();
+            //watchForm();
 
         });
 
@@ -36,7 +37,8 @@ angular.module('testElementApp', ['ui.bootstrap', 'finSpider.directives'])
                 return 'fs-element.html';
             },
             scope: {
-                fsModel: '='
+                fsModel: '=',
+                fsName: '@'
             },
             link: function (scope, element, attrs, ngModelCtrl) {
                 console.log('In Linker...');
@@ -81,17 +83,14 @@ angular.module('testElementApp', ['ui.bootstrap', 'finSpider.directives'])
 
                 var watchForm = $scope.$watch('inputForm', function (newValue, oldValue) {
                     console.log('>>> Inside myForm $watch - Inside');
-                    //console.log(newValue);
-                    //console.log(oldValue);
-                    console.log($scope);
-                    console.log($scope.myForm);
                     watchForm();
                 });
 
                 $scope.isValid = function () {
                     //console.log('Called isValid');
                     //console.log($scope.inputForm);
-                    return $scope.inputForm.$valid;
+                    //console.log($scope);
+                    return $scope[$scope.fsName + 'Form'].$valid;
                 };
 
             }]
@@ -217,12 +216,11 @@ angular.module('testElementApp', ['ui.bootstrap', 'finSpider.directives'])
             controller: ['$scope', 'datePickerOptions', function ($scope, datePickerOptions) {
                 //console.log('In Date Directive Controller...');
 
+                //$scope.$watch('inputForm.txtInput', function () {
+                //    console.log($scope.inputForm);
+                //    console.log('Change my form');
+                //});
 
-
-                $scope.$watch('inputForm.txtInput', function () {
-                    console.log($scope.inputForm);
-                    console.log('Change my form');
-                });
             }]
         }
     }])

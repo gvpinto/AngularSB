@@ -29,11 +29,13 @@
             <label for="txtInputOutside">Outside</label>
             <input type="text" class="form-control" name="txtInputOutside" ng-model="inputVal" id="txtInputOutside" placeholder="Name...">
         </div>
-        <fs-element fs-model="inputVal"></fs-element>
+        <fs-element fs-model="inputVal" fs-name="date1"></fs-element>
+        <fs-element fs-model="inputVal2" fs-name="date2"></fs-element>
         <!--<fs-element></fs-element>-->
     </form>
 
     <h3>{{ inputVal }}</h3>
+    <h3>{{ inputVal2 }}</h3>
 
 
 </body>
