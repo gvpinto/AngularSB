@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"
       ng-app="dateApp">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -11,13 +12,19 @@
     <link rel="stylesheet"
           href="../bower_components/bootstrap/dist/css/bootstrap.css">
 
-    <script>
-        var mnt = moment;
-        console.log(mnt);
-    </script>
 
 </head>
 <body>
+
+<div ng-controller="dateCtrl">
+
+    <form name="dateForm">
+
+        <fs-calendar fs-field-metadata="screenMetadata.date" fs-model="modelDate" fs-displayed="true", fs-required="true"></fs-calendar>
+
+    </form>
+
+</div>
 
 
 <!--<div class='container-fluid'-->
@@ -51,15 +58,6 @@
 
 
 <!--</div>-->
-
-<div class='container-fluid'
-     ng-controller="dateCtrl">
-
-    <form name="dateForm">
-
-        <fs-date fs-field-metadata="screenMetadata" fs-form="dateForm" fs-model="modelDate" fs-date-control="dateControl" fs-field-name="date" />
-
-    </form>
 
 
 </body>

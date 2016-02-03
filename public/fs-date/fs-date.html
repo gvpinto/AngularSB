@@ -19,16 +19,16 @@
                    date-disabled="dateOptions.disabled(date, mode)"
                    show-weeks="dateOptions.showWeeks"
                    close-text="Close"
-                   ng-disabled="setToReadOnly"
+                   ng-disabled="fsDisabled"
                    placeholder="mm/dd/yyyy"
                    aria-describedby="{{ fsFieldMetadata.help }}"
-                   ng-pattern="fsFieldMetadata.pattern"
-                   ng-required="requiredByAll"/>
+                   ng-required="fsRequired"
+                   fs-date/>
 
                     <span class="input-group-btn">
                         <button type="button"
                                 class="btn btn-default datepicker"
-                                ng-disabled="setToReadOnly"
+                                ng-disabled="fsDisabled"
                                 ng-click="dateOptions.open($event)">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </button>
