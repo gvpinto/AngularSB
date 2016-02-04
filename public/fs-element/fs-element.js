@@ -177,7 +177,8 @@ angular.module('testElementApp', ['ui.bootstrap', 'finSpider.directives'])
                 // ----- On Events -----
                 element.on('blur', function() {
                     console.log('Blur Event called');
-                    //console.log(ngModelCtrl.$valid);
+                    console.log(ngModelCtrl.$error);
+                    console.log(ngModelCtrl.$valid);
                     if (element.val() && element.val() !== '' && ngModelCtrl.$valid) {
                         var formattedDate = momentService(new Date(currentDateEntry.value)).format("MM/DD/YYYY")
                         console.log(formattedDate);

@@ -8,8 +8,6 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
             console.log('Changed');
         }
 
-        $scope.dateControl = datePickerOptions.createDatePickerOptions();
-
         $scope.screenMetadata = {
             //form: 'basicdataForm',
             forms: {
@@ -55,37 +53,47 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
                 console.log('Linker...');
             },
 
-            controller: ['$scope', '$q', '$timeout', '$filter', function ($scope, $q, $timeout, $filter) {
+            controller: [
+                '$scope', 
+                '$q', 
+                '$timeout', 
+                '$filter', 
+                'datePickerOptions', 
+                function ($scope, $q, $timeout, $filter, datePickerOptions) {
 
                 console.log('Controller...');
 
-                $scope.hasSuccessOrError = function (control) {
+                $scope.successOrError = function () {
 
-                    function controlStatus(control) {
-                        //var success = $scope.isValid(control);
-                        //var untouched = $scope.isUntouched(form, control);
-                        return {success: control.$valid, untouched: control.$untouched};
-                    }
+                    // function controlStatus(control) {
+                    //     //var success = $scope.isValid(control);
+                    //     //var untouched = $scope.isUntouched(form, control);
+                    //     return {success: control.$valid, untouched: control.$untouched};
+                    // }
 
-                    var status = controlStatus(control);
+                    // var status = controlStatus(control);
 
-                    if (status.untouched) {
-                        return {glyphicon: '', has: ''};
-                    } else {
-                        if (status.success) {
-                            return {glyphicon: 'glyphicon-ok', has: 'has-success'};
-                        } else {
-                            return {glyphicon: 'glyphicon-remove', has: 'has-error'};
-                        }
-                    }
+                    // if (status.untouched) {
+                    //     return {glyphicon: '', has: ''};
+                    // } else {
+                    //     if (status.success) {
+                    //         return {glyphicon: 'glyphicon-ok', has: 'has-success'};
+                    //     } else {
+                    //         return {glyphicon: 'glyphicon-remove', has: 'has-error'};
+                    //     }
+                    // }
+                    return {glyphicon: 'glyphicon-ok', has: 'has-success'};
                 };
 
 
                 $scope.isValid = function () {
-                    console.log('isValid');
-                    //console.log($scope.fsFieldMetadata.id);
+                    //console.log('isValid');
+                    console.log($scope.fsFieldMetadata.id);
                     return true;
                 };
+                
+                
+                $scope.dateOptions = datePickerOptions.createDatePickerOptions();
 
 
             }]
@@ -96,12 +104,14 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
             require: 'ngModel',
             restrict: 'A',
             link: function (scope, element, attrs, ngModelCtrl) {
-
+                console.log('Inside of fsDate link');
+                
                 var currentDateEntry;
 
                 // ----- Date Validation -----
                 function validateDate(date) {
-
+                    console.log(typeof date === 'object');
+                    console.log('validateDate: ' + date);
                     //var shortDateRE = /^(\d{1,2})\/(\d{1,2})\/(\d{2})$/;
                     var dateRE = /^(\d{1,2})(\/(?=(?:\d+\/))|\/{0}(?=\d{1,2}(?:\d{2}|\d{4})))(\d{1,2})(\/?)(\d{2}|\d{4})$/;
                     var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -153,27 +163,29 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
 
                 // ----- Validation -----
 
-                ngModelCtrl.$validators.date = function (modelValue, viewValue) {
-                    console.log('$validators.date');
-                    if (ngModelCtrl.$isEmpty(modelValue)) {
-                        // Consider Empty Models to be valid
-                        console.log('Date is empty and valid');
-                        return true;
-                    }
-                    currentDateEntry = validateDate(modelValue);
-                    if (currentDateEntry.valid) {
-                        console.log('Date is valid');
-                        return true;
-                    } else {
-                        console.log('Date in invalid');
-                        return false;
-                    }
-                };
+                // ngModelCtrl.$validators.date = function (modelValue, viewValue) {
+                //     console.log('$validators.date');
+                //     if (ngModelCtrl.$isEmpty(modelValue)) {
+                //         // Consider Empty Models to be valid
+                //         console.log('Date is empty and valid');
+                //         return true;
+                //     }
+                //     currentDateEntry = validateDate(modelValue);
+                //     if (currentDateEntry.valid) {
+                //         console.log('Date is valid');
+                //         return true;
+                //     } else {
+                //         console.log('Date in invalid');
+                //         return false;
+                //     }
+                // };
 
                 // ----- On Events -----
                 element.on('blur', function () {
                     console.log('Blur Event called');
-                    //console.log(ngModelCtrl.$valid);
+                    console.log(ngModelCtrl.$error);
+                    console.log(ngModelCtrl.$valid);
+                    console.log(ngModelCtrl.$invalid);
                     if (element.val() && element.val() !== '' && ngModelCtrl.$valid) {
                         var formattedDate = momentService(new Date(currentDateEntry.value)).format("MM/DD/YYYY")
                         console.log(formattedDate);
@@ -226,6 +238,7 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
                 return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
             },
             open: function ($event) {
+                console.log('Opened');
                 this.opened = true;
             },
             today: function () {
@@ -239,6 +252,7 @@ angular.module('dateApp', ['ui.bootstrap', 'finSpider.directives'])
 
         function createDatePickerOptions(dateFormat) {
             dateFormat = dateFormat || 'MM/dd/yyyy';
+            console.log(dateFormat);
             return new DatePickerOptions(dateFormat);
         }
 
